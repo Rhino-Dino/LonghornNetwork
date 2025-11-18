@@ -1,0 +1,88 @@
+------------------------------------
+| Class: ChatThread                |
+| Implements implements Runnable   |
+| Fields:                          |
+| Methods:                         |
+|   public run() : void            |
+------------------------------------
+
+-----------------------
+| Class: DataParser   |
+| Fields:             |
+| Methods:            |
+-----------------------
+
+------------------------------------
+| Class: FriendRequestThread       |
+| Implements implements Runnable   |
+| Fields:                          |
+| Methods:                         |
+|   public run() : void            |
+------------------------------------
+
+------------------------
+| Class: GaleShapley   |
+| Fields:              |
+| Methods:             |
+------------------------
+
+-----------------
+| Class: Main   |
+| Fields:       |
+| Methods:      |
+-----------------
+
+-------------------------------------------
+| Class: PodFormation                     |
+| Fields:                                 |
+| Methods:                                |
+|   public formPods(int podSize) : void   |
+-------------------------------------------
+
+--------------------------------------------------------------------------------------------------------
+| Class: ReferralPathFinder                                                                            |
+| Fields:                                                                                              |
+| Methods:                                                                                             |
+|   public findReferralPath(UniversityStudent start, String targetCompany) : List<UniversityStudent>   |
+--------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------
+| Class: Student                                   |
+| Fields:                                          |
+|   protected name : String                        |
+|   protected age : int                            |
+|   protected gender : String                      |
+|   protected year : int                           |
+|   protected major : String                       |
+|   protected gpa : double                         |
+|   protected roommatePreferences : List<String>   |
+|   protected previousInternships : List<String>   |
+| Methods:                                         |
+----------------------------------------------------
+
+-----------------------------------------------------------------------------------
+| Class: StudentGraph                                                             |
+| Fields:                                                                         |
+|   public neighbor : UniversityStudent                                           |
+|   public weight : int                                                           |
+| Methods:                                                                        |
+|   public addEdge(UniversityStudent a, UniversityStudent b, int weight) : void   |
+|   public getNeighbors(UniversityStudent student) : List<Edge>                   |
+|   public getAllNodes() : Set<UniversityStudent>                                 |
+-----------------------------------------------------------------------------------
+
+---------------------------------------------------------------
+| Class: UniversityStudent                                    |
+| Extends --> Student                                         |
+| Fields:                                                     |
+| Methods:                                                    |
+|   public getName() : String                                 |
+|   public getAge() : int                                     |
+|   public getGender() : String                               |
+|   public getYear() : int                                    |
+|   public getMajor() : String                                |
+|   public getGpa() : double                                  |
+|   public getRoommatePreferences() : List<String>            |
+|   public getPreviousInternships() : List<String>            |
+|   public calculateConnectionStrength(Student other) : int   |
+---------------------------------------------------------------
