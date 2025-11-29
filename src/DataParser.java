@@ -19,6 +19,9 @@ public class DataParser {
      * @throws IOException if the file cannot be opened or read
      */
     public static List<UniversityStudent> parseStudents(String filename) throws IOException {
-        return new ArrayList<>();
+        //universityStudent content: name, age, gender, year, major, gpa, roomaatePreferences, previousInternships
+        ArrayList<UniversityStudent> output = new ArrayList<UniversityStudent>();
+
+        return output;
     }
 }

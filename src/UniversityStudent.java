@@ -11,7 +11,7 @@ import java.util.*;
  * referral networks, roommate assignments, or graph-based social modeling.</p>
  */
 public class UniversityStudent extends Student {
-
+    private UniversityStudent roommate;
     /**
      * Constructs a {@code UniversityStudent} with the specified attributes.
      *
@@ -42,7 +42,9 @@ public class UniversityStudent extends Student {
         this.gpa = gpa;
         this.roommatePreferences = new ArrayList<>(roommatePreferences);
         this.previousInternships = new ArrayList<>(previousInternships);
+        this.roommate = null;   //no roommate by default
     }
+
 
     // ---------------- Getters ----------------
 
@@ -71,24 +73,80 @@ public class UniversityStudent extends Student {
     }
 
     public List<String> getRoommatePreferences() {
-        return new ArrayList<>(roommatePreferences);
+        return roommatePreferences;
+    }
+    public UniversityStudent getRoommate() {
+        return roommate;
     }
 
     public List<String> getPreviousInternships() {
         return new ArrayList<>(previousInternships);
     }
 
+    //SETTERS
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    public void setYear(int year) {
+        this.year = year;
+    }
+    public void setMajor(String major) {
+        this.major = major;
+    }
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
+    }
+    public void setRoommatePreferences(List<String> roommatePreferences) {
+        this.roommatePreferences = new ArrayList<>(roommatePreferences);
+    }
+    public void setPreviousInternships(List<String> previousInternships) {
+        this.previousInternships = new ArrayList<>(previousInternships);
+    }
+    public void setRoommate(UniversityStudent roommate) {
+        this.roommate = roommate;
+    }
+
+
     // ---------------- Connection Strength ----------------
 
     /**
      * Calculates the connection strength between this university student
-     * and another student. 
+     * and another student. +4 if roomates, +3 for internship, +2 major, +1 age
      *
      * @param other the student to compare against
      * @return an integer representing the connection strength
      */
     @Override
     public int calculateConnectionStrength(Student other) {
-        return 0;
+        int strength = 0;
+        if (other instanceof UniversityStudent) {
+            UniversityStudent o = (UniversityStudent) other;    //cast
+
+            //if o is the assigned roommate, add +4 to strength
+            if (this.roommate != null && this.roommate.equals(o))
+                strength += 4;
+
+            //if o shares past internship experience, add +3 to strength
+            for (String internship : this.previousInternships) {
+                if (o.previousInternships.contains(internship))
+                    strength += 3;
+            }
+
+            //if o has same major, +2 strength
+            if (this.major.equals(o.major))
+                strength += 2;
+
+            //if o is same age, +1 strength
+            if (this.year == o.year)
+                strength += 1;
+
+        }
+        return strength;
     }
 }

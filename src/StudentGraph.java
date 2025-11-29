@@ -27,6 +27,12 @@ public class StudentGraph {
             this.neighbor = neighbor;
             this.weight = weight;
         }
+
+        //formats correctly
+        @Override
+        public String toString() {
+            return "(" + neighbor.name + ", " + weight + ")";
+        }
     }
 
     /** The adjacency list mapping each student to their list of edges. */
@@ -40,14 +46,25 @@ public class StudentGraph {
      */
     public StudentGraph(List<UniversityStudent> students) {
         adjacencyList = new HashMap<>();
+        //initializing nodes
         for (UniversityStudent s : students) {
             adjacencyList.put(s, new ArrayList<>());
+        }
+        //creates edges between every pair of students.
+        for (int i = 0; i < students.size(); i++) {
+            for (int j = i + 1; j < students.size(); j++) {
+                UniversityStudent s1 = students.get(i);
+                UniversityStudent s2 = students.get(j);
+                int weight = s1.calculateConnectionStrength(s2);
+                if (weight > 0) {
+                    addEdge(s1, s2, weight);
+                }
+            }
         }
     }
 
     /**
-     * Adds a weighted edge between two students. Because this is an undirected
-     * graph, the edge is added in both directions.
+     * Adds a weighted edge between two students.
      *
      * @param a      the first student
      * @param b      the second student
@@ -65,7 +82,7 @@ public class StudentGraph {
      * @return a list of {@link Edge} objects representing neighbors
      */
     public List<Edge> getNeighbors(UniversityStudent student) {
-        return adjacencyList.getOrDefault(student, new ArrayList<>());
+        return adjacencyList.get(student);
     }
 
     /**
@@ -75,5 +92,12 @@ public class StudentGraph {
      */
     public Set<UniversityStudent> getAllNodes() {
         return adjacencyList.keySet();
+    }
+
+    public void displayGraph(){
+        System.out.println("\nStudent Graph:");
+        for (UniversityStudent s : adjacencyList.keySet()) {
+            System.out.println(s.name + " -> " + adjacencyList.get(s));
+        }
     }
 }
