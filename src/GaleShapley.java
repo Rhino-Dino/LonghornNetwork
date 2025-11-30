@@ -76,6 +76,7 @@ public class GaleShapley {
                 roommatePairs.put(student, t);
                 roommatePairs.put(t, student);
                 student.setRoommate(t);
+                t.setRoommate(student); //was initially misisng
             } else {
                 //t is already paired; check if t prefers student over current partner
                 UniversityStudent currentPartner = t.getRoommate();
@@ -89,6 +90,7 @@ public class GaleShapley {
                     freeStudents.offer(currentPartner);
                     currentPartner.setRoommate(null);
                     student.setRoommate(t);
+                    t.setRoommate(student); //initially missing
                 } else {
                     // t rejects student.
                     if (nextProposalIndex.get(student) < student.roommatePreferences.size()) {
