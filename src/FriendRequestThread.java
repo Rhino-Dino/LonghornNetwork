@@ -34,6 +34,9 @@ public class FriendRequestThread implements Runnable {
             semaphore.acquire();
             // Simulate sending a friend request. In a full implementation, you would update shared data.
             System.out.println("FriendRequest (Thread-Safe): " + sender.name + " sent a friend request to " + receiver.name);
+            sender.addFriendRequestCount();
+            //receiver.addFriendRequestCount();   //increment unistudent data
+
         } catch (InterruptedException e){
             Thread.currentThread().interrupt();
             System.err.println("FriendRequest interrupted: " + e.getMessage());

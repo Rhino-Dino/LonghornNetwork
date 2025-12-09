@@ -36,7 +36,10 @@ public class ChatThread implements Runnable {
         try{
             semaphore.acquire();
             // Simulate sending a chat message. A real implementation would update a shared chat history.
-            System.out.println("Chat (Thread-Safe): " + sender.name + " to " + receiver.name + ": " + message);
+            String out = "Chat (Thread-Safe): " + sender.name + " to " + receiver.name + ": " + message + "\n";
+            System.out.println(out);
+            receiver.addChatHistory(out);   //implemeted history for both ends
+            sender.addChatHistory(out);
         } catch (InterruptedException e){
             Thread.currentThread().interrupt();
             System.err.println("Chat interrupted: " + e.getMessage());

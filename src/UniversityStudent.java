@@ -12,6 +12,9 @@ import java.util.*;
  */
 public class UniversityStudent extends Student {
     private UniversityStudent roommate;
+    private int friendRequestCount;
+    private List<String> chatHistory;
+
     /**
      * Constructs a {@code UniversityStudent} with the specified attributes.
      *
@@ -43,6 +46,10 @@ public class UniversityStudent extends Student {
         this.roommatePreferences = new ArrayList<>(roommatePreferences);
         this.previousInternships = new ArrayList<>(previousInternships);
         this.roommate = null;   //no roommate by default
+
+        this.friendRequestCount = 0; // Example: Random count (0-4), hardcoded for now
+        this.chatHistory = new ArrayList<>();
+        this.chatHistory.add("None");
     }
 
 
@@ -83,7 +90,15 @@ public class UniversityStudent extends Student {
         return new ArrayList<>(previousInternships);
     }
 
-    //SETTERS
+    public int getFriendRequestCount() {
+        return friendRequestCount;
+    }
+
+    public List<String> getChatHistory() {
+        return new ArrayList<>(chatHistory);
+    }
+
+    //--------------------SETTERS-------------------
     public void setName(String name) {
         this.name = name;
     }
@@ -112,6 +127,21 @@ public class UniversityStudent extends Student {
         this.roommate = roommate;
     }
 
+    public void setFriendRequestCount(int friendRequestCount) {
+        this.friendRequestCount = friendRequestCount;
+    }
+
+    public void addFriendRequestCount() {
+        this.friendRequestCount++;
+    }
+
+    public void setChatHistory(List<String> chatHistory) {
+        this.chatHistory = new ArrayList<>(chatHistory);
+    }
+
+    public void addChatHistory(String message){
+        this.chatHistory.add(message);
+    }
 
     // ---------------- Connection Strength ----------------
 
